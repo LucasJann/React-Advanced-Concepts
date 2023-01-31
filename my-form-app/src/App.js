@@ -1,3 +1,4 @@
+import BasicForm from '../src/components/BasicForm'
 import SimpleInput from './components/SimpleInput';
 
 function App() {
