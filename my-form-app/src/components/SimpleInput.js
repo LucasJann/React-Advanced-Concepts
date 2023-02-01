@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 import useInput from "./hooks/use-input";
 
 const SimpleInput = (props) => {
   const {
     value: enteredName,
-    isValid: enteredNameIsValid,
+    isTouched: enteredNameIsValid,
     hasError: nameInputHasError,
     valueChangeHandler: nameChangeHandler,
     inputBlurHandler: nameBlurHandler,
@@ -14,7 +12,7 @@ const SimpleInput = (props) => {
 
   const {
     value: enteredEmail,
-    isValid: enteredEmailIsValid,
+    isTouched: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
@@ -40,7 +38,7 @@ const SimpleInput = (props) => {
   };
 
   const nameInputClasses = nameInputHasError
-    ? "form-control invalid"
+    ? "form-control "
     : "form-control";
 
   const emailInputClasses = emailInputHasError
