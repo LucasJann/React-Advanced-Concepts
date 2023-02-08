@@ -1,106 +1,133 @@
-import { useRef, useState } from 'react';
-
-import classes from './Checkout.module.css';
-
-const isEmpty = (value) => value.trim() === '';
-const isFiveChars = (value) => value.trim().length === 5;
+import React from "react";
+import useInput from "../hooks/use-input";
+import classes from "./Checkout.module.css";
 
 const Checkout = (props) => {
-  const [formInputsValidity, setFormInputsValidity] = useState({
-    name: true,
-    street: true,
-    city: true,
-    postalCode: true,
-  });
+  const {
+    input: enteredName,
+    inputIsValid: nameIsValidated,
+    inputHasError: thisNameHasError,
+    inputChanged: nameChangeHandler,
+    inputIsTouched: onNameBlurHandler,
+  } = useInput((value) => value.trim() !== "");
 
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalCodeInputRef = useRef();
-  const cityInputRef = useRef();
+  const {
+    input: enteredStreet,
+    inputIsValid: streetIsValidated,
+    inputHasError: thisStreetHasError,
+    inputChanged: streetChangeHandler,
+    inputIsTouched: onStreetBlurHandler,
+  } = useInput((value) => value.trim() !== "");
 
-  const confirmHandler = (event) => {
-    event.preventDefault();
+  const {
+    inputName: enteredPostal,
+    inputIsValid: postalIsValidated,
+    inputHasError: thisPostalHasError,
+    inputChanged: postalChangeHandler,
+    inputIsTouched: onPostalBlurHandler,
+  } = useInput((value) => value.trim().length === 5);
 
-    const enteredName = nameInputRef.current.value;
-    const enteredStreet = streetInputRef.current.value;
-    const enteredPostalCode = postalCodeInputRef.current.value;
-    const enteredCity = cityInputRef.current.value;
+  const {
+    inputName: enteredCity,
+    inputIsValid: cityValidated,
+    inputHasError: thisCityHasError,
+    inputChanged: cityChangeHandler,
+    inputIsTouched: onCityBlurHandler,
+  } = useInput((value) => value.trim() !== "");
 
-    const enteredNameIsValid = !isEmpty(enteredName);
-    const enteredStreetIsValid = !isEmpty(enteredStreet);
-    const enteredCityIsValid = !isEmpty(enteredCity);
-    const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
+  const nameControlClasses = `${classes.control} ${
+    !thisNameHasError ? "" : classes.invalid
+  }`;
 
-    setFormInputsValidity({
-      name: enteredNameIsValid,
-      street: enteredStreetIsValid,
-      city: enteredCityIsValid,
-      postalCode: enteredPostalCodeIsValid,
-    });
+  const streetControlClasses = `${classes.control} ${
+    !thisStreetHasError ? "" : classes.invalid
+  }`;
 
-    const formIsValid =
-      enteredNameIsValid &&
-      enteredStreetIsValid &&
-      enteredCityIsValid &&
-      enteredPostalCodeIsValid;
+  const postalCodeControlClasses = `${classes.control} ${
+    !thisPostalHasError ? "" : classes.invalid
+  }`;
 
-    if (!formIsValid) {
-      return;
-    }
+  const cityControlClasses = `${classes.control} ${
+    !thisCityHasError ? "" : classes.invalid
+  }`;
 
+  let isValid =
+    nameIsValidated && streetIsValidated && postalIsValidated && cityValidated;
+
+  const onSubmitHandler = () => {
     props.onConfirm({
       name: enteredName,
       street: enteredStreet,
       city: enteredCity,
-      postalCode: enteredPostalCode,
-    })
+      postalCode: enteredPostal,
+    });
   };
 
-  const nameControlClasses = `${classes.control} ${
-    formInputsValidity.name ? '' : classes.invalid
-  }`;
-  const streetControlClasses = `${classes.control} ${
-    formInputsValidity.street ? '' : classes.invalid
-  }`;
-  const postalCodeControlClasses = `${classes.control} ${
-    formInputsValidity.postalCode ? '' : classes.invalid
-  }`;
-  const cityControlClasses = `${classes.control} ${
-    formInputsValidity.city ? '' : classes.invalid
-  }`;
-
   return (
-    <form className={classes.form} onSubmit={confirmHandler}>
+    <form className={classes.form} onSubmit={onSubmitHandler}>
       <div className={nameControlClasses}>
-        <label htmlFor='name'>Your Name</label>
-        <input type='text' id='name' ref={nameInputRef} />
-        {!formInputsValidity.name && <p>Please enter a valid name!</p>}
+        <label htmlFor="name">Your Name</label>
+        <input
+          type="text"
+          id="name"
+          onChange={nameChangeHandler}
+          onBlur={onNameBlurHandler}
+          value={enteredName}
+        />
+        {thisNameHasError && (
+          <p className={classes.error}>Please enter a valid name!</p>
+        )}
       </div>
       <div className={streetControlClasses}>
-        <label htmlFor='street'>Street</label>
-        <input type='text' id='street' ref={streetInputRef} />
-        {!formInputsValidity.street && <p>Please enter a valid street!</p>}
-      </div>
-      <div className={postalCodeControlClasses}>
-        <label htmlFor='postal'>Postal Code</label>
-        <input type='text' id='postal' ref={postalCodeInputRef} />
-        {!formInputsValidity.postalCode && (
-          <p>Please enter a valid postal code (5 characters long)!</p>
+        <label htmlFor="street">Street</label>
+        <input
+          type="text"
+          id="street"
+          onChange={streetChangeHandler}
+          onBlur={onStreetBlurHandler}
+          value={enteredStreet}
+        />
+        {thisStreetHasError && (
+          <p className={classes.error}>Please enter a valid street!</p>
         )}
       </div>
       <div className={cityControlClasses}>
-        <label htmlFor='city'>City</label>
-        <input type='text' id='city' ref={cityInputRef} />
-        {!formInputsValidity.city && <p>Please enter a valid city!</p>}
+        <label htmlFor="city">City</label>
+        <input
+          type="text"
+          id="city"
+          onChange={cityChangeHandler}
+          onBlur={onCityBlurHandler}
+          value={enteredCity}
+        />
+        {thisCityHasError && (
+          <p className={classes.error}>Please enter a valid city!</p>
+        )}
+      </div>
+      <div className={postalCodeControlClasses}>
+        <label htmlFor="postal">Postal Code</label>
+        <input
+          type="text"
+          id="postal"
+          onChange={postalChangeHandler}
+          onBlur={onPostalBlurHandler}
+          value={enteredPostal}
+        />
+        {thisPostalHasError && (
+          <p className={classes.error}>
+            Please enter a valid postal code (5 characters long)!
+          </p>
+        )}
       </div>
       <div className={classes.actions}>
-        <button type='button' onClick={props.onCancel}>
+        <button type="button" onClick={props.onCancel}>
           Cancel
         </button>
-        <button className={classes.submit}>Confirm</button>
+        <div className={classes.actions}>
+        <button disabled={!isValid}>Confirm</button>
+      </div>
       </div>
     </form>
   );
 };
-
 export default Checkout;

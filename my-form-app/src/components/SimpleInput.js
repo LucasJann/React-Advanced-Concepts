@@ -38,7 +38,7 @@ const SimpleInput = (props) => {
   };
 
   const nameInputClasses = nameInputHasError
-    ? "form-control "
+    ? "form-control invalid"
     : "form-control";
 
   const emailInputClasses = emailInputHasError
