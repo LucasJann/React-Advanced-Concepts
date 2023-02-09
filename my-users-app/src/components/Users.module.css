@@ -1,10 +1,10 @@
 .users {
-  margin: 2rem auto;
-  background-color: white;
   padding: 1rem;
-  border-radius: 12px;
   max-width: 40rem;
+  margin: 2rem auto;
   text-align: center;
+  border-radius: 12px;
+  background-color: white;
 }
 
 .users ul {
