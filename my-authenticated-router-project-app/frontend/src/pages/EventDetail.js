@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import {
-  useRouteLoaderData,
   json,
-  redirect,
   defer,
   Await,
+  redirect,
+  useRouteLoaderData,
 } from 'react-router-dom';
 
 import EventItem from '../components/EventItem';
