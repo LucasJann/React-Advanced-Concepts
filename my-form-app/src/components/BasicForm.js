@@ -30,9 +30,9 @@ const BasicForm = (props) => {
 
   let isValid = false;
 
-  const nameValidator = !nameInputHasError && nameInputIsTouched
-  const lastNameValidator = !lastNameInputHasError && lastNameInputIsTouched
-  const emailValidator = !emailInputHasError && emailInputIsTouched
+  const nameValidator = !nameInputHasError && nameInputIsTouched;
+  const lastNameValidator = !lastNameInputHasError && lastNameInputIsTouched;
+  const emailValidator = !emailInputHasError && emailInputIsTouched;
 
   if (nameValidator && lastNameValidator && emailValidator) {
     isValid = true;
@@ -40,9 +40,8 @@ const BasicForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("Submitado com sucesso! :D");
     console.log(
-      `Your name is ${enteredLastName}, ${enteredName}. And i also checked here that your e-mail is ${enteredEmail}. is that correct?`
+      `Your name is ${enteredName} ${enteredLastName}. And i've also checked your e-mail. It's ${enteredEmail}. Is that correct?`
     );
 
     resetNameInput();

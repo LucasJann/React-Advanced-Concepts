@@ -28,7 +28,11 @@ const SimpleInput = (props) => {
   const formSubmissionHandler = (event) => {
     event.preventDefault();
 
-    if(!enteredEmailIsValid) {
+    console.log(
+      `Your name is ${enteredName}. And i've also checked your e-mail. It's ${enteredEmail}. Is that correct?`
+    );
+
+    if (!enteredEmailIsValid) {
       return;
     }
 

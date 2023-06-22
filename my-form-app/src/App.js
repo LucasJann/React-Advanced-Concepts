@@ -4,7 +4,7 @@ import SimpleForm from '../src/components/SimpleInput'
 function App() {
   return (
     <div className="app">
-      <SimpleForm />
+      <BasicForm />
     </div>
   );
 }
