@@ -1,4 +1,4 @@
-import { Component, Fragment, useState, useEffect } from "react";
+import { Component, Fragment} from "react";
 
 import Users from "./Users";
 import classes from "./UserFinder.module.css";
@@ -41,12 +41,14 @@ class UserFinder extends Component {
   render() {
     return (
       <Fragment>
-        <input
-          className={classes.finder}
-          type="search"
-          onChange={this.searchChangeHandler.bind(this)}
-        />
-        <Users users={this.state.filteredUsers} />
+        <section className={classes.section}>
+          <input
+            className={classes.finder}
+            type="search"
+            onChange={this.searchChangeHandler.bind(this)}
+          />
+          <Users users={this.state.filteredUsers} />
+        </section>
       </Fragment>
     );
   }
