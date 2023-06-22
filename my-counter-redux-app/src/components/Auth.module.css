@@ -8,6 +8,26 @@
   background-color: #f4f0fa;
 }
 
+.valid {
+  font: inherit;
+  cursor: pointer;
+  background-color: #5a04bb;
+  border: 1px solid #5a04bb;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+}
+
+.invalid {
+  font: inherit;
+  cursor: pointer;
+  background-color: #200242;
+  border: 1px solid #290057;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+}
+
 .control {
   margin-bottom: 0.5rem;
 }
