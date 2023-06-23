@@ -1,15 +1,16 @@
-import { Suspense } from 'react';
-import {
-  json,
-  defer,
-  Await,
-  redirect,
-  useRouteLoaderData,
-} from 'react-router-dom';
-
 import EventItem from '../components/EventItem';
 import EventsList from '../components/EventsList';
+
+import { Suspense } from 'react';
 import { getAuthToken } from '../util/auth';
+
+import {
+  useRouteLoaderData,
+  json,
+  redirect,
+  defer,
+  Await,
+} from 'react-router-dom';
 
 function EventDetailPage() {
   const { event, events } = useRouteLoaderData('event-detail');

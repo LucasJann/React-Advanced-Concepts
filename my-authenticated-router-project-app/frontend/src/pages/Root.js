@@ -7,6 +7,7 @@ import { getTokenDuration } from '../util/auth';
 function RootLayout() {
   const token = useLoaderData();
   const submit = useSubmit();
+  // const navigation = useNavigation();
   useEffect(() => {
     if (!token) {
       return;
@@ -29,6 +30,7 @@ function RootLayout() {
     <>
       <MainNavigation />
       <main>
+        {/* {navigation.state === 'loading' && <p>Loading...</p>} */}
         <Outlet />
       </main>
     </>
