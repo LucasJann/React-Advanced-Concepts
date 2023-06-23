@@ -1,4 +1,8 @@
+import EventItem from "../components/EventItem";
+import EventList from "../components/EventsList";
+
 import { Suspense } from "react";
+
 import {
   useRouteLoaderData,
   json,
@@ -6,8 +10,7 @@ import {
   defer,
   Await,
 } from "react-router-dom";
-import EventItem from "../components/EventItem";
-import EventList from "../components/EventsList";
+
 
 const EventDetailsPage = () => {
   const { event, events } = useRouteLoaderData("event-detail");

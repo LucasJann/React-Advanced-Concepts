@@ -1,3 +1,5 @@
+import classes from "./EventForm.module.css";
+
 import {
   useNavigation,
   useNavigate,
@@ -7,7 +9,6 @@ import {
   redirect,
 } from "react-router-dom";
 
-import classes from "./EventForm.module.css";
 
 function EventForm({ method, event }) {
   const data = useActionData();
