@@ -1,7 +1,7 @@
 import {
-  createBrowserRouter,
   // Route,
   // createRoutesFromElements,
+  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
@@ -11,12 +11,6 @@ import ProductsPage from "./pages/Products";
 import RootLayout from "./pages/Root";
 import ProductDetailPage from "./pages/ProductDetail";
 
-// const routeDefinition = createRoutesFromElements(
-//   <Route>
-//     <Route path="/" element={<HomePage />} />
-//     <Route path="/products" element={<ProductsPage />} />
-//   </Route>
-// );
 
 const router = createBrowserRouter([
   {
@@ -30,6 +24,14 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// The example below is about other way to create routes 
+// const routeDefinition = createRoutesFromElements(
+//   <Route>
+//     <Route path="/" element={<HomePage />} />
+//     <Route path="/products" element={<ProductsPage />} />
+//   </Route>
+// );
 
 // const router = createBrowserRouter(routeDefinition);
 
