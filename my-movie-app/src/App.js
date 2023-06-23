@@ -17,10 +17,10 @@ function App() {
         "https://react-http-f8211-default-rtdb.firebaseio.com/movies.json"
       );
       
-      // if (!response.ok) {
-      //   console.log(!response.ok)
-      //   throw new Error("Something went wrong!");
-      // }
+      if (!response.ok) {
+        console.log(!response.ok)
+        throw new Error("Something went wrong!");
+      }
 
       const data = await response.json();
 
